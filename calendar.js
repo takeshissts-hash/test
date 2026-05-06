@@ -9,11 +9,11 @@ function Calendar(month){
 	dat = new Date(today.getFullYear(), today.getMonth() + month, 1)  ;
 	da2 = dat.getMonth();
 	da1 = dat.getYear();
-	first = "<table summary='ƒJƒŒƒ“ƒ_[' width=400 border=1><tbody>";
+	first = "<table summary='ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼' width=400 border=1><tbody>";
 	end = "</tr></tbody></table>";
 	thisMonth = da2 + 1;
 	dayOfMonth = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
-	wdays = new Array("“ú","Œ","‰Î","…","–Ø","‹à","“y");
+	wdays = new Array("æ—¥","æœˆ","ç«","æ°´","æœ¨","é‡‘","åœŸ");
 	for(nm1 = baseyear; nm1 <= da1; nm1++){
 		if (nm1 % 4 == 0){
 			dayOfMonth[1] += 1;
@@ -34,7 +34,7 @@ function Calendar(month){
 	firstDay = dat.getDay();
 	    start = "<tr id='pbcbg' align='center'>";
 	for (y = 1;y <= firstDay;y++){
-		start = start + "<td>@</td>";
+		start = start + "<td>ã€€</td>";
 	}
 	y -= 1;
 	view = start;
@@ -68,13 +68,13 @@ function Calendar(month){
 		sab += 1;
 		y += 1;
 	}
-	wday = "<tr id='pbcbg'><td bgcolor=#ffddff align=center><font color='#ff0000' size=+2>“ú</font></td>";
+	wday = "<tr id='pbcbg'><td bgcolor=#ffddff align=center><font color='#ff0000' size=+2>æ—¥</font></td>";
 	for(i = 1; i < 6 ; i++){
 		wday += "<td  align=center bgcolor=#ffffff>" + wdays[i] + "</td>";
 	}
-	wday += "<td bgcolor=#ddffff align=center><font color=#0000ff size=+2>“y</font></td></tr>";
+	wday += "<td bgcolor=#ddffff align=center><font color=#0000ff size=+2>åœŸ</font></td></tr>";
 	da1 = da1 + 1900;
-	close1 = first + "<font color=red> " + da1 + "”N" + thisMonth + "Œ</font>";
+	close1 = first + "<font color=red> " + da1 + "å¹´" + thisMonth + "æœˆ</font>";
 	close2 = wday + view + end;
 	document.write(close1);
 	document.write(close2);
@@ -89,25 +89,25 @@ function check_neighber(cur_stone,num){
     if(str > 266 || str < 11)  {
         return 0;
     } 
-    if(document.getElementById(str).value =="@") {
+    if(document.getElementById(str).value =="ã€€") {
         return 0;
     } else if(document.getElementById(str).value == cur_stone) {
         return 0;
     } else {
-        if(document.getElementById(str).value == "Z") {
-            return "Z";
+        if(document.getElementById(str).value == "ã€‡") {
+            return "ã€‡";
         } else {
-            return "œ";
+            return "â—";
         }
     } 
 }
 function holiday(month, day) {
-    var holiday =     { "1-1": '¬l‚Ì“ú',
-                        "2-11": 'Œš‘‹L”O“ú', 
-                        "2-23": '“Vc’a¶“ú', 
-                        "3-20": 't•ª‚Ì“ú',
-                        "11-23": '‹Î˜JŠ´Ó‚Ì“ú',
-                        "12-31": '”N––”Nn'  
+    var holiday =     { "1-1": 'æˆäººã®æ—¥',
+                        "2-11": 'å»ºå›½è¨˜å¿µæ—¥', 
+                        "2-23": 'å¤©çš‡èª•ç”Ÿæ—¥', 
+                        "3-20": 'æ˜¥åˆ†ã®æ—¥',
+                        "11-23": 'å‹¤åŠ´æ„Ÿè¬ã®æ—¥',
+                        "12-31": 'å¹´æœ«å¹´å§‹'  
                       };
     var str = month + "-" + day;
     if(holiday[str] != "-"){
@@ -125,8 +125,8 @@ function check_corner() {
     var rtn2 = 0;
     var rtn3 = 0;
     var test = 0;
-    var cur_stone = "Z";
-    if(document.getElementById(11).value == "@"){
+    var cur_stone = "ã€‡";
+    if(document.getElementById(11).value == "ã€€"){
        //for( var i = 0; i < 16; i++ ) {
            //test = 16 * i + 11;
 
@@ -139,15 +139,15 @@ function check_corner() {
               document.getElementById(11).value = cur_stone;
               document.getElementById("gorobe").value = parseInt(gorobee) + 1;
               if(parseInt(gorobee)  % 2 == 1) {
-                  document.getElementById("gorobe1").value = "•‚Ì”Ô";
+                  document.getElementById("gorobe1").value = "é»’ã®ç•ª";
               } else {
-                  document.getElementById("gorobe1").value = "”’‚Ì”Ô";
+                  document.getElementById("gorobe1").value = "ç™½ã®ç•ª";
               }
               return 1;
             }
             
     }
-    if(document.getElementById(26).value == "@"){
+    if(document.getElementById(26).value == "ã€€"){
            rtn1 = check_down(26, cur_stone);
            rtn2 = check_right(26, cur_stone);  
            rtn3 = check_rightdown(26, cur_stone);  
@@ -155,16 +155,16 @@ function check_corner() {
               document.getElementById(26).value = cur_stone;
               document.getElementById("gorobe").value = parseInt(gorobee) + 1;
               if(parseInt(gorobee)  % 2 == 1) {
-                  document.getElementById("gorobe1").value = "•‚Ì”Ô";
+                  document.getElementById("gorobe1").value = "é»’ã®ç•ª";
               } else {
-                  document.getElementById("gorobe1").value = "”’‚Ì”Ô";
+                  document.getElementById("gorobe1").value = "ç™½ã®ç•ª";
               }
               return 1;
             }        
             //
             
     }
-    if(document.getElementById(251).value == "@"){
+    if(document.getElementById(251).value == "ã€€"){
        //for( var i = 0; i < 16; i++ ) {
            //test = 16 * i + 11;
 
@@ -177,16 +177,16 @@ function check_corner() {
               document.getElementById(251).value = cur_stone;
               document.getElementById("gorobe").value = parseInt(gorobee) + 1;
               if(parseInt(gorobee)  % 2 == 1) {
-                  document.getElementById("gorobe1").value = "•‚Ì”Ô";
+                  document.getElementById("gorobe1").value = "é»’ã®ç•ª";
               } else {
-                  document.getElementById("gorobe1").value = "”’‚Ì”Ô";
+                  document.getElementById("gorobe1").value = "ç™½ã®ç•ª";
               }
               return 1;
             }
             //
 
     }
-    if(document.getElementById(266).value == "@"){
+    if(document.getElementById(266).value == "ã€€"){
            rtn1 = check_up(266, cur_stone);
            rtn2 = check_right(266, cur_stone);  
            rtn3 = check_rightup(266, cur_stone);  
@@ -194,9 +194,9 @@ function check_corner() {
               document.getElementById(266).value = cur_stone;
               document.getElementById("gorobe").value = parseInt(gorobee) + 1;
               if(parseInt(gorobee)  % 2 == 1) {
-                  document.getElementById("gorobe1").value = "•‚Ì”Ô";
+                  document.getElementById("gorobe1").value = "é»’ã®ç•ª";
               } else {
-                  document.getElementById("gorobe1").value = "”’‚Ì”Ô";
+                  document.getElementById("gorobe1").value = "ç™½ã®ç•ª";
               }
               return 1;
             }        
@@ -209,12 +209,12 @@ function check_border() {
     var rtn2 = 0;
     var rtn3 = 0;
     var test = 0;
-    var cur_stone = "Z";
+    var cur_stone = "ã€‡";
     
     if(document.getElementById(11).value == cur_stone){
        for( var i = 0; i < 16; i++ ) {
            test = 16 * i + 11;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -226,7 +226,7 @@ function check_border() {
        rtn2 = 0;
        for( i = 1; i < 16; i++ ) {
            test = i + 11;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -241,7 +241,7 @@ function check_border() {
 
        for( i = 1; i < 16; i++ ) {
            test = 26 - i;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -253,7 +253,7 @@ function check_border() {
        rtn2 = 0;
        for( i = 0; i < 16; i++ ) {
            test = i * 16 + 26;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -268,7 +268,7 @@ function check_border() {
 
        for( i = 1; i < 16; i++ ) {
            test = 251 - i * 16;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -280,7 +280,7 @@ function check_border() {
        rtn2 = 0;
        for( i = 1; i < 16; i++ ) {
            test = 251 + i;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -295,7 +295,7 @@ function check_border() {
 
        for( i = 1; i < 16; i++ ) {
            test = 266 - i * 16;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -305,7 +305,7 @@ function check_border() {
            }   
        }
        rtn2 = 0;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -322,12 +322,12 @@ function check_nearBorder() {
     var rtn2 = 0;
     var ary = [28,29,44,30,45,60,31,46,61,76,32,47,62,77,92];
     var test = 0;
-    var cur_stone = "Z";
+    var cur_stone = "ã€‡";
     
     if(document.getElementById(11).value == cur_stone){
        for( var i = 0; i < 15; i++ ) {
            test = ary[i];
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -339,7 +339,7 @@ function check_nearBorder() {
        rtn2 = 0;
        for( i = 1; i < 16; i++ ) {
            test = i + 11;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -354,7 +354,7 @@ function check_nearBorder() {
 
        for( i = 1; i < 16; i++ ) {
            test = 26 - i;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -366,7 +366,7 @@ function check_nearBorder() {
        rtn2 = 0;
        for( i = 0; i < 16; i++ ) {
            test = i * 16 + 26;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -381,7 +381,7 @@ function check_nearBorder() {
 
        for( i = 1; i < 16; i++ ) {
            test = 251 - i * 16;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -393,7 +393,7 @@ function check_nearBorder() {
        rtn2 = 0;
        for( i = 1; i < 16; i++ ) {
            test = 251 + i;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -408,7 +408,7 @@ function check_nearBorder() {
 
        for( i = 1; i < 16; i++ ) {
            test = 266 - i * 16;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -418,7 +418,7 @@ function check_nearBorder() {
            }   
        }
        rtn2 = 0;
-           if(document.getElementById(test).value == "@" && rtn2 == 0){
+           if(document.getElementById(test).value == "ã€€" && rtn2 == 0){
               rtn1 = btnClick(test);
               if(rtn1 >0) {
                   return rtn1;
@@ -435,13 +435,13 @@ function check_done() {
     var all = 256;
     var check = 0;
     for(var i = 0 ; i < all ; i++) {
-       if(document.getElementById(i + 11).value == "@") {
+       if(document.getElementById(i + 11).value == "ã€€") {
            check = 1;
            break;
        }    
     }
     if(check == 0) {
-        alert("I‚è‚Å‚·");
+        alert("çµ‚ã‚Šã§ã™");
         finalJudge();
     }
 }
