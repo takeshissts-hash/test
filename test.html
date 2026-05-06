@@ -1,0 +1,520 @@
+<html>
+<head>
+<script src="calendar.js"></script>
+<script type=text/Javascript>
+<!--
+function gogogo(){
+    var dat = new Date;
+    document.write(dat);
+    document.write("<br>");
+    sabath = new Date(2008, 0, 1)
+    document.write(sabath);
+    //Calendar(1);
+    
+}
+
+
+function check_right(num, cur_stone){
+    if( num % 8 == 3) {
+        return 0;
+    }
+    var int_num = (parseInt(num) - 1) ;
+    var i = 0;
+    var right_first = check_neighber(cur_stone,int_num);
+    //alert(right_first);
+    if(right_first == 0 ) {
+        return 0;
+    }
+    var rtn = checkDistance(int_num, cur_stone, "right");
+    //alert("RTN#");
+    //alert(rtn);
+    //右側をチェック
+    for(var i = 0; i < rtn; i++){
+        if(document.getElementById(int_num).value == "　") {
+            return 0;
+        }
+        if(document.getElementById(int_num).value == cur_stone) {
+            break;
+        }        
+        //alert(right_first); 
+        if(right_first =="〇") {
+            document.getElementById(int_num).value = "●";
+        } else if(right_first =="●"){
+            document.getElementById(int_num).value = "〇";
+        }
+        int_num = int_num - 1;
+        if( int_num % 8 == 3) {
+            break;
+        }
+        
+    }
+    return i;
+}
+function check_left(num, cur_stone){
+    if( num % 8 == 2) {
+        return 0;
+    }
+    var int_num = (parseInt(num) + 1) ;
+    if( int_num > 74) {
+        return 0;
+    }        
+    var i = 0;
+    var left_first = check_neighber(cur_stone,int_num);
+    //alert(left_first);
+    if(left_first == null ) {
+        return 0;
+    }
+    var rtn = checkDistance(int_num, cur_stone, "left");
+    //左側をチェック
+    for(var i = 0; i < rtn; i++){
+        if(document.getElementById(int_num).value == "　") {
+            return 0;
+        }
+        if(document.getElementById(int_num).value == cur_stone) {
+            break;
+        }
+        //alert(left_first); 
+        if(left_first =="〇") {
+            document.getElementById(int_num).value = "●";
+        } else if(left_first =="●"){
+            document.getElementById(int_num).value = "〇";
+        }
+        int_num = int_num + 1;
+        if( int_num % 8 == 2 || int_num > 74) {
+            break;
+        }
+    }
+    return i;
+}
+function check_up(num, cur_stone){
+    if( num < 11) {
+        return 0;
+    }
+    var int_num = (parseInt(num) - 8) ;
+    if( int_num > 74) {
+        return 0;
+    }    
+    var i = 0;
+    var up_first = check_neighber(cur_stone,int_num);
+    //alert(up_first);
+    if(up_first == 0 ) {
+        return 0;
+    }
+    var rtn = checkDistance(int_num, cur_stone, "up");
+    //alert("UP RTN#");
+    //alert(rtn);
+    //上側をチェック
+    for(var i = 0; i < rtn; i++){
+        if(document.getElementById(int_num).value == "　") {
+            return 0;
+        }
+        if(document.getElementById(int_num).value == cur_stone) {
+            break;
+        }        
+        //alert(up_first); 
+        if(up_first =="〇") {
+            document.getElementById(int_num).value = "●";
+        } else if(up_first =="●"){
+            document.getElementById(int_num).value = "〇";
+        }
+        int_num = int_num - 8;
+        if( int_num < 11) {
+            return 0;
+        }
+    }
+    return i;
+}
+function check_down(num, cur_stone){
+    if( num > 74) {
+        return 0;
+    }
+    var int_num = (parseInt(num) + 8) ;
+    var i = 0;
+    var down_first = check_neighber(cur_stone,int_num);
+    //alert(down_first);
+    if(down_first == null ) {
+        return 0;
+    }
+    var rtn = checkDistance(int_num, cur_stone, "down");
+    //左側をチェック
+    for(var i = 0; i < rtn; i++){
+        if(document.getElementById(int_num).value == "　") {
+            return 0;
+        }
+        if(document.getElementById(int_num).value == cur_stone) {
+            break;
+        }
+        //alert(down_first); 
+        if(down_first =="〇") {
+            document.getElementById(int_num).value = "●";
+        } else if(down_first =="●"){
+            document.getElementById(int_num).value = "〇";
+        }
+        int_num = int_num + 8;
+    }
+    return i;
+}
+function check_rightup(num, cur_stone){
+    if(num < 11 || num % 8 == 3) {
+        return 0;
+    }
+    var int_num = (parseInt(num) - 9) ;
+    var i = 0;
+    var rightup_first = check_neighber(cur_stone,int_num);
+    //alert(rightup_first);
+    if(rightup_first == null ) {
+        return 0;
+    }
+    var rtn = checkDistance(int_num, cur_stone, "rightup");
+    //左側をチェック
+    for(var i = 0; i < rtn; i++){
+        if(document.getElementById(int_num).value == "　") {
+            return 0;
+        }
+        if(document.getElementById(int_num).value == cur_stone) {
+            break;
+        }
+        //alert(rightup_first); 
+        if(rightup_first =="〇") {
+            document.getElementById(int_num).value = "●";
+        } else if(rightup_first =="●"){
+            document.getElementById(int_num).value = "〇";
+        }
+        int_num = int_num - 9;
+    }
+    return i;
+}
+function check_leftup(num, cur_stone){
+    if(num < 11 || num % 8 == 2) {
+        return 0;
+    }
+    var int_num = (parseInt(num) - 7) ;
+    var i = 0;
+    var leftup_first = check_neighber(cur_stone,int_num);
+    //alert(leftup_first);
+    if(leftup_first == null ) {
+        return 0;
+    }
+    var rtn = checkDistance(int_num, cur_stone, "leftup");
+    //左側をチェック
+    for(var i = 0; i < rtn; i++){
+        if(document.getElementById(int_num).value == "　") {
+            return 0;
+        }
+        if(document.getElementById(int_num).value == cur_stone) {
+            break;
+        }
+        //alert(leftup); 
+        if(leftup_first =="〇") {
+            document.getElementById(int_num).value = "●";
+        } else if(leftup_first =="●"){
+            document.getElementById(int_num).value = "〇";
+        }
+        int_num = int_num - 7;
+    }
+    return i;
+}
+
+
+function check_rightdown(num, cur_stone){
+    if(num > 74 || num % 8 == 3) {
+        return 0;
+    }
+    var int_num = (parseInt(num) + 7) ;
+    var i = 0;
+    var rightdown_first = check_neighber(cur_stone,int_num);
+    //alert(rightdown_first);
+    if(rightdown_first == null ) {
+        return 0;
+    }
+    var rtn = checkDistance(int_num, cur_stone, "rightdown");
+    //左側をチェック
+    for(var i = 0; i < rtn; i++){
+        if(document.getElementById(int_num).value == "　") {
+            return 0;
+        }
+        if(document.getElementById(int_num).value == cur_stone) {
+            break;
+        }
+        //alert(rightdown); 
+        if(rightdown_first =="〇") {
+            document.getElementById(int_num).value = "●";
+        } else if(rightdown_first =="●"){
+            document.getElementById(int_num).value = "〇";
+        }
+        int_num = int_num + 7;
+    }
+    return i;
+}
+
+function check_leftdown(num, cur_stone){
+    if(num > 74 || num % 8 == 2) {
+        return 0;
+    }
+    var int_num = (parseInt(num) + 9) ;
+    var i = 0;
+    var leftdown_first = check_neighber(cur_stone,int_num);
+    //alert(leftdown_first);
+    if(leftdown_first == null ) {
+        return 0;
+    }
+    var rtn = checkDistance(int_num, cur_stone, "leftdown");
+    //左側をチェック
+    for(var i = 0; i < rtn; i++){
+        if(document.getElementById(int_num).value == "　") {
+            return 0;
+        }
+        if(document.getElementById(int_num).value == cur_stone) {
+            break;
+        }
+        //alert(leftdown); 
+        if(leftdown_first =="〇") {
+            document.getElementById(int_num).value = "●";
+        } else if(leftdown_first =="●"){
+            document.getElementById(int_num).value = "〇";
+        }
+        int_num = int_num + 9;
+    }
+    return i;
+}
+
+
+function checkDistance(int_num,cur_stone,direction) {
+    //var str = checkDirection(direction);
+    
+    if(direction == "right") {
+        var i = 0;
+        while(int_num % 8 != 2 || document.getElementById(int_num).value == "　") {
+            if(document.getElementById(int_num).value == cur_stone) {
+                return i;
+            } 
+            int_num = int_num - 1;
+            if( int_num % 8 == 2  || document.getElementById(int_num).value == "　") {
+                 break;
+            }
+            
+            i = i + 1;
+        }
+        return 0;
+    } else if(direction == "left") {
+        i = 0;
+        while(int_num % 8 != 3 ) {
+            if(document.getElementById(int_num).value == cur_stone) {
+                return i;
+            } 
+            int_num = int_num + 1;
+            if( int_num % 8 == 3 || int_num > 74  || document.getElementById(int_num).value == "　") {
+                 break;
+            }
+            i = i + 1;
+        }
+        return 0;
+    } else if(direction == "up") {
+        i = 0;
+        while(int_num > 10 ) {
+            
+            if(document.getElementById(int_num).value == cur_stone) {
+                return i;
+            } 
+            int_num = int_num - 8;
+            if(int_num < 11 || document.getElementById(int_num).value == "　") {
+                return 0;
+            }
+            i = i + 1;
+        }
+        return 0;
+    } else if(direction == "down") {
+        i = 0;
+        while(int_num < 75 ) {
+            
+            if(document.getElementById(int_num).value == cur_stone) {
+                return i;
+            } 
+            int_num = int_num + 8;
+            if(int_num > 74 || document.getElementById(int_num).value == "　") {
+                return 0;
+            }
+            i = i + 1;
+        }
+        return 0;
+    } else if(direction == "rightup") {
+        i = 0;
+        while(int_num > 11 && int_num % 8 != 2) {
+
+            if(document.getElementById(int_num).value == cur_stone) {
+                return i;
+            }
+
+            if(int_num < 11 || int_num % 8 == 3) {
+                break;
+            }
+            i = i + 1;
+            int_num = int_num - 9;
+        }
+        return 0;
+    } else if(direction == "leftup") {
+        i = 0;
+        while(int_num > 11 && int_num % 8 != 3) {
+            
+            if(document.getElementById(int_num).value == cur_stone) {
+                return i;
+            }
+            i = i + 1;
+            int_num = int_num - 7;
+            if(int_num < 11 || int_num % 8 == 3) {
+                break;
+            }
+        }
+        return 0;
+    } else if(direction == "rightdown") {
+        i = 0;
+        while(int_num < 74 && int_num % 8 != 2) {
+            
+            if(document.getElementById(int_num).value == cur_stone) {
+                return i;
+            }
+            i = i + 1;
+            int_num = int_num + 7;
+            if(int_num > 74 || int_num % 8 == 2) {
+                break;
+            }
+        }
+        return 0;
+    } else if(direction == "leftdown") {
+        i = 0;
+        while(int_num < 74 && int_num % 8 != 3) {
+            
+            if(document.getElementById(int_num).value == cur_stone) {
+                return i;
+            }
+            i = i + 1;
+            int_num = int_num + 9;
+            if(int_num > 74 || int_num % 8 == 3) {
+                break;
+            }
+        }
+        return 0;
+    }
+    
+    
+    
+}
+function btnClick(num){
+    var str = num;
+    var cur_stone;
+    var check = 0;
+    var gorobee = document.getElementById("gorobe").value;
+    
+    if(document.getElementById("gorobe").value % 2 == 0) {
+        cur_stone = "●";
+    } else {
+        cur_stone = "〇";
+    }
+    if(document.getElementById(str).value != "　"){
+        return;
+    }
+    //cur_stone = document.getElementById(str).value;
+    check = check_right(str, cur_stone);
+    //alert("右");
+    //alert(check);
+    var left_rtn = check_left(str, cur_stone);
+    check = parseInt(check) + parseInt(left_rtn);
+    //alert("左");
+    //alert(check);
+    var up_rtn = check_up(str, cur_stone);
+    check = parseInt(check) + parseInt(up_rtn);
+    //alert("上");
+    //alert(check);   
+    var down_rtn = check_down(str, cur_stone);
+    check = parseInt(check) + parseInt(down_rtn);
+    var rightup_rtn = check_rightup(str, cur_stone);
+    check = parseInt(check) + parseInt(rightup_rtn);
+    var leftup_rtn = check_leftup(str, cur_stone);
+    check = parseInt(check) + parseInt(leftup_rtn);    
+    var rightdown_rtn = check_rightdown(str, cur_stone);
+    check = parseInt(check) + parseInt(rightdown_rtn);
+    var leftdown_rtn = check_leftdown(str, cur_stone);
+    check = parseInt(check) + parseInt(leftdown_rtn);      
+    //alert("check");
+    //alert(check);       
+    if(check > 0){
+        document.getElementById(str).value = cur_stone;
+        document.getElementById("gorobe").value = parseInt(gorobee) + 1;
+    }
+    if(parseInt(gorobee)  % 2 == 1) {
+        document.getElementById("gorobe1").value = "黒の番";
+    } else {
+        document.getElementById("gorobe1").value = "白の番";
+    }
+}
+function changeTurn(){
+    var gorobee = document.getElementById("gorobe").value;
+    document.getElementById("gorobe").value = parseInt(gorobee) + 1;
+    if(parseInt(gorobee)  % 2 == 1) {
+        document.getElementById("gorobe1").value = "黒の番";
+    } else {
+        document.getElementById("gorobe1").value = "白の番";
+    }
+}
+
+function autoChange(num){
+    var str = num;
+    if(document.getElementById(str).value =="") {
+        document.getElementById(str).value = "〇";
+    } else if(document.getElementById(str).value =="〇") {
+        document.getElementById(str).value = "●";
+    } else {
+        document.getElementById(str).value = "〇";
+    }
+}
+function finalJudge() {
+    var black = 0;
+    var white = 0;
+    for(var i = 11; i < 75; i++) {
+        if(document.getElementById(i).value =="〇") {
+            white = white + 1;
+        } else if(document.getElementById(i).value == "●"){
+            black = black + 1;
+        }
+    }
+    if(white > black) {
+        alert("白の勝ちです");
+    } else if(black > white) {
+        alert("黒の勝ちです");
+    } else {
+        alert("引き分けです");
+    }
+}
+-->
+</script>
+
+</head>
+
+<body background=img/world_map.gif>
+<table><tr><td>
+<script type=text/Javascript>
+<!--
+
+    //gogogo();
+    Calendar(1);
+    //test();
+-->
+</script>
+</td><td>
+
+<script type=text/Javascript>
+<!--
+
+
+-->
+</script>
+
+
+
+</td></tr></table>
+<div id="-button"><p id="text">パスする時はクリック</p></div>
+<input type=button name="gogogo" id="gorobe" value=0 onClick=changeTurn()>
+<input type=button name="gogogo1" id="gorobe1" value="" onClick=changeTurn()>
+<input type=button name="gogogo2" id="gorobe2" value="判定" onClick=finalJudge()>
+</body>
+</html>
